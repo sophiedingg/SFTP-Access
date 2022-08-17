@@ -6,16 +6,19 @@
 #test
 
 import pysftp
-with pysftp.Connection('hostname', username='me', password='secret') as sftp:
-
-with sftp.cd('public'):             # temporarily chdir to public
-
-sftp.put('/my/local/filename')  # upload file to public/ on remote
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    print('Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    # with pysftp.Connection('hostname', username='user', password='secret') as sftp:
+    cnopts = pysftp.CnOpts()
+    cnopts.hostkeys = None
+    with pysftp.Connection('hostname', username='user', password='secret', cnopts=cnopts) as sftp:
+        dirs = sftp.listdir('Public/html')
+        with sftp.cd('Public/html'):  # temporarily chdir to public
 
+            currentfile = sftp.get('index.html')
+        print(dirs)
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
