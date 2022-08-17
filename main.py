@@ -13,11 +13,12 @@ def print_hi(name):
     # with pysftp.Connection('hostname', username='user', password='secret') as sftp:
     cnopts = pysftp.CnOpts()
     cnopts.hostkeys = None
-    with pysftp.Connection('hostname', username='user', password='secret', cnopts=cnopts) as sftp:
+    with pysftp.Connection('sftp.itd.umich.edu', username='sophding', password='cinderblockgarden', cnopts=cnopts) as sftp:
         dirs = sftp.listdir('Public/html')
-        with sftp.cd('Public/html'):  # temporarily chdir to public
+        with sftp.cd('/afs/umich.edu/group/acadaff/natlpc/Public/html/newsite'):  # temporarily chdir to public
 
             currentfile = sftp.get('index.html')
+
         print(dirs)
 
 # Press the green button in the gutter to run the script.
