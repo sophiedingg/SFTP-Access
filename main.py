@@ -5,6 +5,13 @@
 
 #test
 
+import pysftp
+with pysftp.Connection('hostname', username='me', password='secret') as sftp:
+
+with sftp.cd('public'):             # temporarily chdir to public
+
+sftp.put('/my/local/filename')  # upload file to public/ on remote
+
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
